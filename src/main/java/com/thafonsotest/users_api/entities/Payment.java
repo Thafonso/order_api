@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ public class Payment implements Serializable {
     Long id;
     private Instant momeent;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
