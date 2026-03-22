@@ -20,7 +20,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // chose the strategy that is genarates ID automatically
     private Long ID;
 
-    private String Name;
+    private String name;
     private String phone;
     private String email;
     private String cpf;
@@ -36,7 +36,7 @@ public class User implements Serializable {
 
     public User(Long ID, String name, String phone, String email, String cpf, String password) {
         this.ID = ID;
-        this.Name = name;
+        this.name = name;
         this.phone = phone;
         this.email = email;
         this.cpf = cpf;
@@ -52,11 +52,11 @@ public class User implements Serializable {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public String getPhone() {

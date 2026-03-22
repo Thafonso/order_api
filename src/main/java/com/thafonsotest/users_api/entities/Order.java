@@ -30,7 +30,7 @@ public class Order implements Serializable {
     private User client;
 
     @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem>  items =  new HashSet<OrderItem>();
+    private Set<OrderItem>  items =  new HashSet<>();
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL) // Mapped two entities for have the same id
     private Payment payment;
