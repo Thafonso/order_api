@@ -3,6 +3,7 @@ package com.thafonsotest.users_api.controller;
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -41,5 +42,11 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return ResponseEntity.noContent().build(); // return empty response
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
+        user = userService.updateUser(id, user);
+        return ResponseEntity.ok().body(user);
     }
 }
