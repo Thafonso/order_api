@@ -2,6 +2,7 @@ package com.thafonsotest.users_api.services;
 
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.repositories.UserRepository;
+import com.thafonsotest.users_api.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
     public User insertUser(User user) {
