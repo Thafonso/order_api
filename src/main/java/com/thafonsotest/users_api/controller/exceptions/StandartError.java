@@ -1,9 +1,7 @@
 package com.thafonsotest.users_api.controller.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+
 
 import java.io.Serializable;
 import java.time.Instant;

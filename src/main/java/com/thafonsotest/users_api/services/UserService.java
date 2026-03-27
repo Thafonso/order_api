@@ -2,8 +2,10 @@ package com.thafonsotest.users_api.services;
 
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.repositories.UserRepository;
+import com.thafonsotest.users_api.services.exceptions.DataBaseException;
 import com.thafonsotest.users_api.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +29,13 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        } catch(NotFoundException e){
+            throw new NotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataBaseException(e.getMessage());
+        }
     }
 
     public User updateUser(Long id, User user) {
