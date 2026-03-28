@@ -24,7 +24,7 @@ public class HandlerException {
     @ExceptionHandler(DataBaseException.class)
     public ResponseEntity<StandartError> dataBase(DataBaseException notFoundException, HttpServletRequest request){
         String error = "Data Base error";
-        HttpStatus status = HttpStatus.BAD_REQUEST; // its not possible to do this action
+        HttpStatus status = HttpStatus.BAD_REQUEST; // This action is not allowed
         StandartError standartError = new StandartError(Instant.now(), status.value(), error, notFoundException.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(standartError);
     }

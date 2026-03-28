@@ -4,6 +4,7 @@ import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.repositories.UserRepository;
 import com.thafonsotest.users_api.services.exceptions.DataBaseException;
 import com.thafonsotest.users_api.services.exceptions.NotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,13 @@ public class UserService {
     }
 
     public User updateUser(Long id, User user) {
-        User u = userRepository.getReferenceById(id); // search by id and update the user who has this id
-        updateData(u, user);
-        return userRepository.save(u);
+        try {
+            User u = userRepository.getReferenceById(id); // search by id and update the user who has this id
+            updateData(u, user);
+            return userRepository.save(u);
+        } catch (EntityNotFoundException e) {
+            throw new NotFoundException(id);
+        }
     }
 
     private void updateData(User u, User user) {
