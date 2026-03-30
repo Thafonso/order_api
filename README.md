@@ -107,8 +107,12 @@ The API will be available at `http://localhost:8080`.
 |--------|-------------------|---------------------|
 | GET    | `/orders`         | List all orders     |
 | GET    | `/orders/{id}`    | Get order by ID     |
-| POST   | `/orders`         | Create a new order  |
-| PUT    | `/orders/{id}`    | Update an order     |
-| DELETE | `/orders/{id}`    | Delete an order     |
+|--------|-------------------|---------------------|
+| GET    | `/users`          | List all userrs     |
+| GET    | `/userss/{id}`    | Get user by ID      |
+| POST   | `/users`          | Create a new user   |
+| PUT    | `/users/{id}`     | Update an user      |
+| DELETE | `/users/{id}`     | Delete an user      |
+
 
 ---
