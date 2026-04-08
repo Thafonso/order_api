@@ -3,11 +3,11 @@ package com.thafonsotest.users_api.controller;
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.awt.print.Pageable;
 import java.net.URI;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<User>> findAll(Pageable pageable) {
         List<User> users = userService.findAll();
         return ResponseEntity.ok().body(users); // return sucsess and the User List
     }
