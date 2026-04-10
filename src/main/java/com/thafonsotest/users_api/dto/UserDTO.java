@@ -5,9 +5,7 @@ import com.thafonsotest.users_api.entities.User;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class UserDTO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class UserDTO  {
 
     private Long Id;
     private String name;

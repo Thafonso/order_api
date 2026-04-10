@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.services;
 
+import com.thafonsotest.users_api.dto.UserDTO;
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.repositories.UserRepository;
 import com.thafonsotest.users_api.services.exceptions.DataBaseException;
@@ -17,16 +18,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserDTO> findAll() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map(UserDTO::new).toList();
     }
 
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+    public UserDTO findById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        return new UserDTO(user);
     }
 
-    public User insertUser(User user) {
-        return userRepository.save(user);
+    public UserDTO insertUser(UserDTO userdto) {
+        User user = fromDTO(userdto);
+        user = userRepository.save(user);
+        return new UserDTO(user);
     }
 
     public void deleteUser(Long id) {
@@ -39,20 +44,30 @@ public class UserService {
         }
     }
 
-    public User updateUser(Long id, User user) {
+    public UserDTO updateUser(Long id, UserDTO userdto) {
         try {
             User u = userRepository.getReferenceById(id); // search by id and update the user who has this id
-            updateData(u, user);
-            return userRepository.save(u);
+            updateData(u, userdto);
+            userRepository.save(u);
+            return new UserDTO(u);
         } catch (EntityNotFoundException e) {
             throw new NotFoundException(id);
         }
     }
 
-    private void updateData(User u, User user) {
-        u.setName(user.getName());
-        u.setEmail(user.getEmail());
-        u.setPhone(user.getPhone());
+    private void updateData(User u, UserDTO userdto) {
+        u.setName(userdto.getName());
+        u.setEmail(userdto.getEmail());
+        u.setPhone(userdto.getPhone());
+    }
+
+    private User fromDTO(UserDTO userdto) {
+        User user = new User();
+        userdto.setId(userdto.getId());
+        user.setName(userdto.getName());
+        user.setEmail(userdto.getEmail());
+        user.setPhone(userdto.getPhone());
+        return user;
     }
 }
 

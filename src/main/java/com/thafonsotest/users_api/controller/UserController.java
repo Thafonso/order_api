@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.controller;
 
+import com.thafonsotest.users_api.dto.UserDTO;
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,25 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(Pageable pageable) {
-        List<User> users = userService.findAll();
-        return ResponseEntity.ok().body(users); // return sucsess and the User List
+    public ResponseEntity<List<UserDTO>> findAll(Pageable pageable) {
+        List<UserDTO> userDTOS = userService.findAll();
+        return ResponseEntity.ok().body(userDTOS); // return sucsess and the User List
     }
 
     @GetMapping(value = "/{id}") // path
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(userService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<User> insertUser(@RequestBody User user){
-        user = userService.insertUser(user);
+    public ResponseEntity<User> insertUser(@RequestBody UserDTO userdto){
+        UserDTO newUser = userService.insertUser(userdto);
+
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(user.getID()).toUri();
-        return ResponseEntity.created(uri).body(user);
+                .buildAndExpand(newUser.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @DeleteMapping(value = "/{id}")
@@ -45,8 +48,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
-        user = userService.updateUser(id, user);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userdto){
+        userService.updateUser(id, userdto);
+        return ResponseEntity.ok().body(userdto);
     }
 }

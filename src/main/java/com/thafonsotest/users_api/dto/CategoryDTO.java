@@ -5,8 +5,7 @@ import com.thafonsotest.users_api.entities.Category;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class CategoryDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class CategoryDTO {
 
     private Long id;
     private String name;

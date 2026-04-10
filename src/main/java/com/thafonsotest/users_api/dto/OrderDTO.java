@@ -9,9 +9,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-public class OrderDTO implements Serializable {
+public class OrderDTO {
 
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     private Instant moment;

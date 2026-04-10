@@ -5,8 +5,7 @@ import com.thafonsotest.users_api.entities.Product;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ProductDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ProductDTO {
 
     private Long id;
 
