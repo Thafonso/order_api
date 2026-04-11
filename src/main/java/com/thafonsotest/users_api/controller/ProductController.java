@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.controller;
 
+import com.thafonsotest.users_api.dto.ProductDTO;
 import com.thafonsotest.users_api.entities.Product;
 import com.thafonsotest.users_api.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<Product>> findAll(){
-        List<Product> products = productService.findAll();
+    public ResponseEntity<List<ProductDTO>> findAll(){
+        List<ProductDTO> products = productService.findAll();
         return ResponseEntity.ok().body(products);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id){
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(productService.findById(id));
     }
 }

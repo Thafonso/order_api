@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.controller;
 
+import com.thafonsotest.users_api.dto.OrderDTO;
 import com.thafonsotest.users_api.entities.Order;
 import com.thafonsotest.users_api.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<Order>> findAll(){
-        List<Order> orders = orderService.findAll();
+    public ResponseEntity<List<OrderDTO>> findAll(){
+        List<OrderDTO> orders = orderService.findAll();
         return ResponseEntity.ok().body(orders); // return sucess and the order List
     }
 
     @GetMapping(value = "/{id}") // path
-    public ResponseEntity<Order> findById(@PathVariable Long id){
+    public ResponseEntity<OrderDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(orderService.findById(id));
     }
 }

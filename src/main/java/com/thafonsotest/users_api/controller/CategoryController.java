@@ -1,5 +1,6 @@
 package com.thafonsotest.users_api.controller;
 
+import com.thafonsotest.users_api.dto.CategoryDTO;
 import com.thafonsotest.users_api.entities.Category;
 import com.thafonsotest.users_api.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,13 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll(){ // Search for all the categories
-        List<Category> categories = categoryService.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll(){ // Search for all the categories
+        List<CategoryDTO> categories = categoryService.findAll();
         return ResponseEntity.ok().body(categories);
     }
 
     @GetMapping(value = {"/{id}"})
-    public ResponseEntity<Category> findById(@PathVariable Long id){ // Search for one id in the category
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){ // Search for one id in the category
         return ResponseEntity.ok().body(categoryService.findById(id));
     }
 

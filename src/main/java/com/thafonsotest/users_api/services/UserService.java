@@ -63,7 +63,7 @@ public class UserService {
 
     private User fromDTO(UserDTO userdto) {
         User user = new User();
-        userdto.setId(userdto.getId());
+        user.setID(userdto.getId());
         user.setName(userdto.getName());
         user.setEmail(userdto.getEmail());
         user.setPhone(userdto.getPhone());
