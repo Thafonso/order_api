@@ -4,7 +4,7 @@ import com.thafonsotest.users_api.dto.OrderDTO;
 import com.thafonsotest.users_api.entities.Order;
 import com.thafonsotest.users_api.repositories.OrderRepository;
 
-import com.thafonsotest.users_api.services.exceptions.NotFoundException;
+import com.thafonsotest.users_api.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

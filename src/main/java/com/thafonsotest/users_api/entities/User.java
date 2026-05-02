@@ -22,7 +22,11 @@ public class User implements Serializable {
 
     private String name;
     private String phone;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(length = 11)
     private String cpf;
     private String password;
 

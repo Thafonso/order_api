@@ -1,4 +1,4 @@
-package com.thafonsotest.users_api.services.exceptions;
+package com.thafonsotest.users_api.exceptions;
 
 public class NotFoundException extends RuntimeException{
 

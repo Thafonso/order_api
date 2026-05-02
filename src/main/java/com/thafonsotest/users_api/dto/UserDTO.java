@@ -1,16 +1,26 @@
 package com.thafonsotest.users_api.dto;
 
 import com.thafonsotest.users_api.entities.User;
-
-import java.io.Serializable;
+import com.thafonsotest.users_api.validations.CpfValid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class UserDTO  {
 
     private Long Id;
+
+    @NotBlank(message = "Username is required")
     private String name;
+
+    @NotNull
     private String phone;
+
+    @Email(message = "Email is required")
     private String email;
+
+    @CpfValid
     private String cpf;
 
     public UserDTO() {

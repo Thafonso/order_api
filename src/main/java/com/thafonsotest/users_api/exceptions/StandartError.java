@@ -1,4 +1,4 @@
-package com.thafonsotest.users_api.controller.exceptions;
+package com.thafonsotest.users_api.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

@@ -3,6 +3,7 @@ package com.thafonsotest.users_api.controller;
 import com.thafonsotest.users_api.dto.UserDTO;
 import com.thafonsotest.users_api.entities.User;
 import com.thafonsotest.users_api.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> insertUser(@RequestBody UserDTO userdto){
+    public ResponseEntity<User> insertUser(@Valid @RequestBody UserDTO userdto){
         UserDTO newUser = userService.insertUser(userdto);
 
         URI uri = ServletUriComponentsBuilder
